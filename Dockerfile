@@ -32,6 +32,5 @@ RUN echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories 
 WORKDIR /var/www/localhost
 COPY apache.conf /conf/apache.conf
 ONBUILD COPY . /var/www/localhost
-USER php
 ONBUILD RUN composer install
 CMD ["httpd","-DFOREGROUND","-e", "debug", "-f","/conf/apache.conf"]
