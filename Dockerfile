@@ -16,7 +16,8 @@ RUN echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories 
     php7-mcrypt \ 
     php7-mongodb \
     php7-opcache \
-    php7-openssl \     
+    php7-openssl \
+    php7-pdo \     
     php7-phar \     
     php7-posix \
     php7-redis \
