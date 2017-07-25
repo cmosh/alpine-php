@@ -33,6 +33,7 @@ RUN echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories 
     php7-xsl \
     php7-zlib && \
     mkdir -p /run/apache2 && \
+    touch
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
     sed -i 's/memory_limit = .*/memory_limit = '${phpmemory_limit}'/' /etc/php7/php.ini
 
@@ -42,8 +43,9 @@ ONBUILD COPY . /var/www/localhost
 ONBUILD RUN composer install && \
             chown -R apache:apache /var/www && \
             chown -R apache:apache /run && \
+            chown -R apache:apache /var/log/apache2 && \
             find /var/www -type f -exec chmod 664 {} \;   && \  
             find /var/www -type d -exec chmod 775 {} \;   && \
-            chmod -R ug+rwx /var/www/localhost/storage /var/www/localhost/bootstrap/cache 
+            chmod -R ug+rwx /var/log/apache2 /var/www/localhost/storage /var/www/localhost/bootstrap/cache 
 ONBUILD USER apache
 CMD ["httpd","-DFOREGROUND","-f","/conf/apache.conf"]
