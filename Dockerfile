@@ -44,7 +44,7 @@ ONBUILD RUN composer install && \
             chown -R apache:apache /var/www && \
             chown -R apache:apache /run && \
             chown -R apache:apache /var/log/apache2 && \
-            chmod -R apache:apache /var/www/logs && \
+            chown -R apache:apache /var/www/logs && \
             chmod -R 775 /var/www/logs && \
             find /var/www -type f -exec chmod 664 {} \;   && \  
             find /var/www -type d -exec chmod 775 {} \;   && \
