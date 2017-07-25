@@ -42,4 +42,5 @@ ONBUILD COPY . /var/www/localhost
 ONBUILD RUN composer install && \
             chown -R apache:apache /var/www/localhost && \
             chmod -R ug+rwx /var/www/localhost/storage /var/www/localhost/bootstrap/cache 
-CMD ["httpd","-DFOREGROUND","-e", "debug", "-f","/conf/apache.conf"]
+USER apache
+CMD ["httpd","-DFOREGROUND","-f","/conf/apache.conf"]
