@@ -28,8 +28,7 @@ RUN echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories 
     php7-xsl \
     php7-zlib && \
     mkdir -p /run/apache2 && \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer  && \
-    addgroup -S php && adduser -S -g php php -u 1000
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer 
 WORKDIR /var/www/localhost
 COPY apache.conf /conf/apache.conf
 ONBUILD COPY . /var/www/localhost
