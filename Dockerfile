@@ -3,7 +3,7 @@ FROM alpine:edge
 LABEL org.label-schema.name="Alpine-php" \
       org.label-schema.description="Alpine php7 image" \
       org.label-schema.vcs-url="https://github.com/cmosh/alpine-php"
-      
+
 RUN echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories  && \
     apk add --no-cache \
     apache2 \
@@ -34,6 +34,7 @@ RUN echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories 
     php7-zlib && \
     mkdir -p /run/apache2 && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer 
+    
 WORKDIR /var/www/localhost
 COPY apache.conf /conf/apache.conf
 ONBUILD COPY . /var/www/localhost
