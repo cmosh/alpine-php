@@ -41,6 +41,8 @@ COPY apache.conf /conf/apache.conf
 ONBUILD COPY . /var/www/localhost
 ONBUILD RUN composer install && \
             chown -R apache:apache /var/www/localhost && \
+            find /var/www/localhost -type f -exec chmod 664 {} \;   && \  
+            find /var/www/localhost -type d -exec chmod 775 {} \;   && \
             chmod -R ug+rwx /var/www/localhost/storage /var/www/localhost/bootstrap/cache 
 USER apache
 CMD ["httpd","-DFOREGROUND","-f","/conf/apache.conf"]
