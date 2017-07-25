@@ -39,5 +39,7 @@ RUN echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories 
 WORKDIR /var/www/localhost
 COPY apache.conf /conf/apache.conf
 ONBUILD COPY . /var/www/localhost
-ONBUILD RUN composer install
+ONBUILD RUN composer install && \
+            chown -R apache:apache /var/www/localhost && \
+            chmod -R ug+rwx /var/www/localhost/storage /var/www/localhost/bootstrap/cache 
 CMD ["httpd","-DFOREGROUND","-e", "debug", "-f","/conf/apache.conf"]
