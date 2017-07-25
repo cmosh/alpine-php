@@ -1,4 +1,9 @@
 FROM alpine:edge
+
+LABEL org.label-schema.name="Alpine-php" \
+      org.label-schema.description="Alpine php7 image" \
+      org.label-schema.vcs-url="https://github.com/cmosh/alpine-php"
+      
 RUN echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories  && \
     apk add --no-cache \
     apache2 \
